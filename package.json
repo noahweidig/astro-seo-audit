@@ -1,0 +1,29 @@
+{
+  "name": "astro-seo-audit",
+  "version": "1.0.0",
+  "description": "SEO audit tool for Astro projects. Check meta tags, schema markup, hreflang, sitemap, images, and headings.",
+  "main": "src/index.js",
+  "bin": {
+    "astro-seo": "bin/astro-seo.js"
+  },
+  "keywords": [
+    "astro",
+    "seo",
+    "audit",
+    "meta-tags",
+    "schema",
+    "hreflang",
+    "sitemap",
+    "lighthouse"
+  ],
+  "author": "Soamee <info@soamee.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/soamee/astro-seo-audit",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soamee/astro-seo-audit"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
