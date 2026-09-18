@@ -155,6 +155,18 @@ astro-seo ./dist --format json --output report.json
   ...
 ```
 
+## Scanning an external site
+
+```bash
+astro-seo-scan-site https://github.com/noahweidig/noahweidig.github.io.git --out dashboard.html
+```
+
+Clones (or uses a local path to) an Astro/static site, builds it, and runs the audit against its `dist/` output, writing an interactive HTML dashboard. See `astro-seo-scan-site --help` for options.
+
+## GitHub Pages dashboard
+
+`.github/workflows/seo-dashboard.yml` runs weekly (and on manual dispatch), scans `noahweidig.github.io`, and publishes the dashboard to this repo's GitHub Pages. Enable Pages once under **Settings -> Pages -> Source: GitHub Actions**.
+
 ## Programmatic usage
 
 ```js
