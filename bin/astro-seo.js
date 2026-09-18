@@ -18,8 +18,9 @@ if (args.includes('--help') || args.includes('-h') || args.length === 0) {
     dist-dir          Path to the Astro build output directory (default: ./dist)
 
   Options:
-    --format <type>   Output format: "terminal" or "json" (default: terminal)
+    --format <type>   Output format: "terminal", "json", or "html" (default: terminal)
     --output <file>   Write results to a file instead of stdout
+    --site-name <name> Label used in the HTML dashboard header
     --help, -h        Show this help message
     --version, -v     Show version number
 
@@ -27,6 +28,7 @@ if (args.includes('--help') || args.includes('-h') || args.length === 0) {
     astro-seo ./dist
     astro-seo ./dist --format json
     astro-seo ./dist --format json --output report.json
+    astro-seo ./dist --format html --output dashboard.html --site-name "My Site"
 `);
   process.exit(0);
 }
@@ -42,6 +44,7 @@ function parseArgs(args) {
     distDir: './dist',
     format: 'terminal',
     output: null,
+    siteName: null,
   };
 
   let i = 0;
@@ -52,6 +55,9 @@ function parseArgs(args) {
       i += 2;
     } else if (arg === '--output' && args[i + 1]) {
       options.output = args[i + 1];
+      i += 2;
+    } else if (arg === '--site-name' && args[i + 1]) {
+      options.siteName = args[i + 1];
       i += 2;
     } else if (!arg.startsWith('--')) {
       options.distDir = arg;

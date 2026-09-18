@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const { formatHtml } = require('./formatters/html.js');
 
 // ANSI color codes
 const colors = {
@@ -160,11 +161,14 @@ function formatJson(audits, totalPages, distDir) {
  * @param {Object} options - Format and output options.
  */
 function report(audits, totalPages, distDir, options = {}) {
-  const { format = 'terminal', output = null } = options;
+  const { format = 'terminal', output = null, siteName = null } = options;
 
   let content;
   if (format === 'json') {
     content = formatJson(audits, totalPages, distDir);
+  } else if (format === 'html') {
+    const score = calculateScore(audits, totalPages);
+    content = formatHtml(audits, totalPages, distDir, score, { siteName });
   } else {
     content = formatTerminal(audits, totalPages, distDir);
   }
@@ -172,6 +176,9 @@ function report(audits, totalPages, distDir, options = {}) {
   if (output) {
     fs.writeFileSync(output, content, 'utf-8');
     console.log(`${colors.green}Report written to ${output}${colors.reset}`);
+  } else if (format === 'html') {
+    console.log(`${colors.yellow}--output is required for --format html; printing HTML to stdout${colors.reset}`);
+    console.log(content);
   } else {
     console.log(content);
   }
@@ -180,4 +187,4 @@ function report(audits, totalPages, distDir, options = {}) {
   return calculateScore(audits, totalPages);
 }
 
-module.exports = { report, formatTerminal, formatJson, calculateScore };
+module.exports = { report, formatTerminal, formatJson, formatHtml, calculateScore };
