@@ -2,7 +2,7 @@ name: SEO dashboard
 
 on:
   schedule:
-    - cron: '0 6 * * 1' # weekly, Monday 06:00 UTC
+    - cron: '0 6 * * *' # 2:00 AM EDT / 1:00 AM EST
   workflow_dispatch: {}
 
 permissions:
