@@ -4,7 +4,11 @@
   "description": "SEO audit tool for Astro projects. Check meta tags, schema markup, hreflang, sitemap, images, and headings.",
   "main": "src/index.js",
   "bin": {
-    "astro-seo": "bin/astro-seo.js"
+    "astro-seo": "bin/astro-seo.js",
+    "astro-seo-scan-site": "bin/scan-site.js"
+  },
+  "scripts": {
+    "scan:site": "node bin/scan-site.js"
   },
   "keywords": [
     "astro",

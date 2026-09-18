@@ -20,7 +20,7 @@ const { report } = require('./reporter.js');
  * @returns {Promise<number>} Overall score (0-100).
  */
 async function runAudit(options) {
-  const { distDir, format = 'terminal', output = null } = options;
+  const { distDir, format = 'terminal', output = null, siteName = null } = options;
 
   // Validate dist directory exists
   if (!fs.existsSync(distDir)) {
@@ -56,7 +56,7 @@ async function runAudit(options) {
   ];
 
   // Generate report
-  const score = report(audits, pages.length, distDir, { format, output });
+  const score = report(audits, pages.length, distDir, { format, output, siteName });
 
   return score;
 }
